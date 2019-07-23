@@ -1,18 +1,20 @@
 package volantes.login
 
+import io.grpc.Status
+import io.grpc.StatusException
 import volantes.grpc.login.LoginServiceImplBase
-import volantes.grpc.login.LoginServiceOuterClass
-import kotlin.coroutines.CoroutineContext
+import volantes.grpc.login.LoginServiceOuterClass.*
 
-class LoginService(override val coroutineContext: CoroutineContext): LoginServiceImplBase() {
+class LoginService: LoginServiceImplBase() {
 
-    override suspend fun login(request: LoginServiceOuterClass.LoginRequest): LoginServiceOuterClass.LoginResponse {
+    override suspend fun login(request: LoginRequest): LoginResponse {
         if(request.login == "admin" && request.password == "admin") {
-            return LoginServiceOuterClass.LoginResponse.newBuilder()
+            return LoginResponse.newBuilder()
                     .setAccessToken("1")
                     .setRefreshToken("2")
                     .build()
         }
+        throw StatusException(Status.UNAUTHENTICATED)
     }
 
 }
