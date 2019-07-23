@@ -3,12 +3,6 @@ package volantes.login
 import io.grpc.Server
 import io.grpc.ServerBuilder
 
-fun main() {
-    val server = LoginServer()
-    server.start()
-    server.blockUntilShutdown()
-}
-
 class LoginServer(private val port: Int = 50051, private val serverBuilder: ServerBuilder<*> = ServerBuilder.forPort(port)) {
     private lateinit var server: Server
 
@@ -28,5 +22,16 @@ class LoginServer(private val port: Int = 50051, private val serverBuilder: Serv
     fun stop() {
         if (::server.isInitialized)
             server.shutdown()
+    }
+
+    companion object {
+
+        @JvmStatic
+        fun main(vararg args: String) {
+            val server = LoginServer()
+            server.start()
+            server.blockUntilShutdown()
+        }
+
     }
 }
