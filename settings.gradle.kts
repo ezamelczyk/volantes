@@ -1,1 +1,1 @@
-include("backend", "login-api")
+include("backend", "login-api", "login-service")
