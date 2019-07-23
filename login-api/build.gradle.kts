@@ -15,10 +15,6 @@ val protobufVersion = "3.7.1"
 val grpcVersion = "1.21.0"
 val grpcKotlinVersion = "0.1.1"
 
-the<JavaPluginConvention>().sourceSets {
-
-}
-
 dependencies {
     compile("com.google.api.grpc:proto-google-common-protos:1.0.0")
     compile("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.0")
