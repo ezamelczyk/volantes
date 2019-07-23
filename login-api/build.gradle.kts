@@ -7,10 +7,6 @@ plugins {
     idea
 }
 
-repositories {
-    maven("https://plugins.gradle.org/m2/")
-}
-
 val protobufVersion = "3.7.1"
 val grpcVersion = "1.21.0"
 val grpcKotlinVersion = "0.1.1"
@@ -22,6 +18,7 @@ dependencies {
     compile("io.grpc:grpc-protobuf:$grpcVersion")
     compile("io.grpc:grpc-stub:$grpcVersion")
     compile(kotlin("stdlib"))
+    compile("javax.annotation:javax.annotation-api:1.3.1")
 }
 
 protobuf {
