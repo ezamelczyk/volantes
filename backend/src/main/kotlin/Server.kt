@@ -1,17 +1,14 @@
-package volantes.login
-
-import io.grpc.Server
 import io.grpc.ServerBuilder
+import volantes.login.LoginService
 
-class LoginServer(private val port: Int = 50051, private val serverBuilder: ServerBuilder<*> = ServerBuilder.forPort(port)) {
-    private lateinit var server: Server
+class Server(private val port: Int = 50051, private val serverBuilder: ServerBuilder<*> = ServerBuilder.forPort(port)) {
+    private lateinit var server: io.grpc.Server
 
     fun start() {
         server = serverBuilder
                 .addService(LoginService())
                 .build()
                 .start()
-        println("Login server started")
     }
 
     @Throws(InterruptedException::class)
@@ -28,7 +25,7 @@ class LoginServer(private val port: Int = 50051, private val serverBuilder: Serv
 
         @JvmStatic
         fun main(vararg args: String) {
-            val server = LoginServer()
+            val server = Server()
             server.start()
             server.blockUntilShutdown()
         }
